@@ -37,9 +37,12 @@ for match_id in past_30_ids:
   match = requests.get(match_url, headers=headers).json()
   for participants in match['info']['participants']:
     if participants['puuid'] == user_puuid:
-      if participants['win'] and not participants['gameEndedInEarlySurrender']:
+      if not participants['win']:
+        losses += 1
+      elif not participants['gameEndedInEarlySurrender']:
         wins += 1
-      else:
-         losses += 1
 
-print("-"*19, "\nPast 30 Games\n" + "Wins:", wins, "Losses:", losses)
+print("-"*19)
+print("Past 30 Games\n" + "Wins:", wins, "Losses:", losses)
+print(str(int((wins/(wins+losses))*100)) + "% Win Rate")
+print("-"*19)
