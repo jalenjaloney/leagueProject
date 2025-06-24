@@ -1,9 +1,13 @@
 import requests
 import os
 
-summoner_region = 'americas'
-summoner_id = 'saphenous'
-summoner_tag = '115'
+summoner_region = input('Enter your region (americas, asia, europe): ').lower()
+while summoner_region not in ['americas', 'asia', 'europe']:
+  summoner_region = input('Not a valid region. Try again: ').lower()
+
+summoner_id = input('Enter your Summoner ID: ')
+
+summoner_tag = input('Enter your Summoner Tag: ')
 
 url = f'https://{summoner_region}.api.riotgames.com/riot/account/v1/accounts/by-riot-id/{summoner_id}/{summoner_tag}'
 
